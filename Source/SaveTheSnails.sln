@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveTheSnails.Data.Models",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveTheSnails.Web", "Web\SaveTheSnails.Web\SaveTheSnails.Web.csproj", "{3B1BD488-5493-4346-8FD3-DF535FC58CCE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveTheSnails.Data.Common", "Data\SaveTheSnails.Data.Common\SaveTheSnails.Data.Common.csproj", "{CBA962DE-B5B7-4E2D-B37C-3FAD4B8EB19E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{3B1BD488-5493-4346-8FD3-DF535FC58CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B1BD488-5493-4346-8FD3-DF535FC58CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B1BD488-5493-4346-8FD3-DF535FC58CCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBA962DE-B5B7-4E2D-B37C-3FAD4B8EB19E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBA962DE-B5B7-4E2D-B37C-3FAD4B8EB19E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBA962DE-B5B7-4E2D-B37C-3FAD4B8EB19E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBA962DE-B5B7-4E2D-B37C-3FAD4B8EB19E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,5 +45,6 @@ Global
 		{BE7353F0-4579-4568-82F6-8DE4E31BDCBC} = {37E10A0C-2F4F-4DE0-AAD9-94CF666A0CC0}
 		{80E4A893-1E89-47E2-AC3F-AC65169F4EB6} = {37E10A0C-2F4F-4DE0-AAD9-94CF666A0CC0}
 		{3B1BD488-5493-4346-8FD3-DF535FC58CCE} = {55E7BDCA-A2E0-4E6A-938C-33D0C502D7BD}
+		{CBA962DE-B5B7-4E2D-B37C-3FAD4B8EB19E} = {37E10A0C-2F4F-4DE0-AAD9-94CF666A0CC0}
 	EndGlobalSection
 EndGlobal

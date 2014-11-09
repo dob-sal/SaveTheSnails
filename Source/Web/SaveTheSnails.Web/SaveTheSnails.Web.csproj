@@ -256,6 +256,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\SaveTheSnails.Data.Common\SaveTheSnails.Data.Common.csproj">
+      <Project>{cba962de-b5b7-4e2d-b37c-3fad4b8eb19e}</Project>
+      <Name>SaveTheSnails.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\SaveTheSnails.Data.Models\SaveTheSnails.Data.Models.csproj">
       <Project>{80e4a893-1e89-47e2-ac3f-ac65169f4eb6}</Project>
       <Name>SaveTheSnails.Data.Models</Name>
