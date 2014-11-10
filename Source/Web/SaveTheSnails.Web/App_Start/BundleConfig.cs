@@ -20,11 +20,14 @@ namespace SaveTheSnails.Web
 
         private static void RegisterStyleBundles(BundleCollection bundles)
         {
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                                "~/Content/bootstrap.css",
+            bundles.Add(new StyleBundle("~/Content/custom").Include(
                                 "~/Content/site.css"));
 
+            bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
+                                "~/Content/bootstrap.css"));
+
             bundles.Add(new StyleBundle("~/Content/kendo").Include(
+                                "~/Content/kendo/kendo.common.min.css",
                                 "~/Content/kendo/kendo.common-bootstrap.min.css",
                                 "~/Content/kendo/kendo.silver.min.css"));
         }
