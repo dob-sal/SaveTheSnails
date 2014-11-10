@@ -12,7 +12,7 @@ using SaveTheSnails.Web.ViewModels.Home;
 
 namespace SaveTheSnails.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private IRepository<Problem> problems;
 
