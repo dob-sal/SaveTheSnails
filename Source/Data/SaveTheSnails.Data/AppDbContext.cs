@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using SaveTheSnails.Data.Common.CodeFirstConventions;
 using SaveTheSnails.Data.Common.Models;
 using SaveTheSnails.Data.Migrations;
 using SaveTheSnails.Data.Models;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SaveTheSnails.Data
 {
-    public class AppDbContext : IdentityDbContext<AppUser>
+    public class AppDbContext : IdentityDbContext<AppUser>, IAppDbContext
     {
         public AppDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -24,7 +25,7 @@ namespace SaveTheSnails.Data
             return new AppDbContext();
         }
 
-        public IDbSet<Problem> Problems { get; set; }
+        public virtual IDbSet<Problem> Problems { get; set; }
 
         public override int SaveChanges()
         {
@@ -72,6 +73,33 @@ namespace SaveTheSnails.Data
                 entity.IsDeleted = true;
                 entry.State = EntityState.Modified;
             }
+        }
+
+       //Added
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+        }
+
+        public DbContext DbContext
+        {
+            get
+            {
+                return this;
+            }
+        }
+
+        public new IDbSet<T> Set<T>() where T : class
+        {
+            return base.Set<T>();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Add(new IsUnicodeAttributeConvention());
+           
+            base.OnModelCreating(modelBuilder); // Without this call EntityFramework won't be able to configure the identity model
         }
     }
 }

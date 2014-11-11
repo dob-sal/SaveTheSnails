@@ -65,6 +65,8 @@ namespace SaveTheSnails.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<DbContext>().To<AppDbContext>();
+            kernel.Bind<IAppDbContext>().To<AppDbContext>();
+            kernel.Bind<IAppData>().To<AppData>();
 
             kernel.Bind(typeof(IDeletableEntityRepository<>))
                 .To(typeof(DeletableEntityRepository<>));

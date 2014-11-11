@@ -9,21 +9,22 @@ using AutoMapper.QueryableExtensions;
 using SaveTheSnails.Data.Common.Repository;
 using SaveTheSnails.Data.Models;
 using SaveTheSnails.Web.ViewModels.Home;
+using SaveTheSnails.Data;
 
 namespace SaveTheSnails.Web.Controllers
 {
     public class HomeController : BaseController
     {
-        private IRepository<Problem> problems;
 
-        public HomeController(IRepository<Problem> problems)
+        public HomeController(IAppData data)
+            :base(data)
         {
-            this.problems = problems;
+
         }
 
         public ActionResult Index()
         {
-            var problems = this.problems.All()
+            var problems = this.Data.Problems.All()
                                .Project()
                                .To<IndexProblemViewModel>();
             
