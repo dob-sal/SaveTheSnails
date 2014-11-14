@@ -49,6 +49,21 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
+    <Reference Include="Glimpse.Ado">
+      <HintPath>..\..\packages\Glimpse.Ado.1.7.3\lib\net45\Glimpse.Ado.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.AspNet">
+      <HintPath>..\..\packages\Glimpse.AspNet.1.8.0\lib\net45\Glimpse.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Core">
+      <HintPath>..\..\packages\Glimpse.1.8.6\lib\net45\Glimpse.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.EF6">
+      <HintPath>..\..\packages\Glimpse.EF6.1.6.5\lib\net45\Glimpse.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Mvc5">
+      <HintPath>..\..\packages\Glimpse.Mvc5.1.5.3\lib\net45\Glimpse.Mvc5.dll</HintPath>
+    </Reference>
     <Reference Include="Kendo.Mvc">
       <HintPath>..\Libraries\Kendo.Mvc.dll</HintPath>
     </Reference>
@@ -192,10 +207,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Coordinators\CoordinatorsAreaRegistration.cs" />
+    <Compile Include="Areas\Users\UsersAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -453,6 +471,8 @@
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Url.cshtml" />
+    <Content Include="Areas\Coordinators\Views\web.config" />
+    <Content Include="Areas\Users\Views\web.config" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -517,6 +537,12 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\ViewModels\" />
+    <Folder Include="Areas\Coordinators\Controllers\" />
+    <Folder Include="Areas\Coordinators\ViewModels\" />
+    <Folder Include="Areas\Coordinators\Views\Shared\" />
+    <Folder Include="Areas\Users\Controllers\" />
+    <Folder Include="Areas\Users\ViewModels\" />
+    <Folder Include="Areas\Users\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
