@@ -118,6 +118,9 @@ namespace SaveTheSnails.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Add(new IsUnicodeAttributeConvention());
+
+             modelBuilder.Entity<ProblemLocation>().Property(l => l.Latitude).HasPrecision(24, 20);
+             modelBuilder.Entity<ProblemLocation>().Property(l => l.Longitude).HasPrecision(24, 20);
            
             base.OnModelCreating(modelBuilder); // Without this call EntityFramework won't be able to configure the identity model
         }

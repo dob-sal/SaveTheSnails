@@ -208,7 +208,9 @@
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
     <Compile Include="Areas\Coordinators\CoordinatorsAreaRegistration.cs" />
+    <Compile Include="Areas\Users\Controllers\ProblemController.cs" />
     <Compile Include="Areas\Users\UsersAreaRegistration.cs" />
+    <Compile Include="Areas\Users\ViewModels\RegisterProblemViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -473,6 +475,9 @@
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Url.cshtml" />
     <Content Include="Areas\Coordinators\Views\web.config" />
     <Content Include="Areas\Users\Views\web.config" />
+    <Content Include="Areas\Users\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Users\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Users\Views\Problem\Register.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -540,9 +545,6 @@
     <Folder Include="Areas\Coordinators\Controllers\" />
     <Folder Include="Areas\Coordinators\ViewModels\" />
     <Folder Include="Areas\Coordinators\Views\Shared\" />
-    <Folder Include="Areas\Users\Controllers\" />
-    <Folder Include="Areas\Users\ViewModels\" />
-    <Folder Include="Areas\Users\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

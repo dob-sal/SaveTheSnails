@@ -1,0 +1,53 @@
+﻿@using SaveTheSnails.Web.Areas.Users.ViewModels
+@model RegisterProblemViewModel
+@{
+    ViewBag.Title = "Register Problem";
+}
+<h1>@ViewBag.Title</h1>
+<div class="row">
+    <div class="col-md-6">
+        <h3>Describe problem</h3>
+        @using (Html.BeginForm("Register", "Problem", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.Title, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+                </div>
+            </div>
+             <div class="form-group">
+                @Html.LabelFor(m => m.Location.Latitude, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Location.Latitude, new { @class = "form-control", id = "latitude-textbox", @readonly = "readonly" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Location.Longitude, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Location.Longitude, new { @class = "form-control", id = "longitude-textbox", @readonly = "readonly" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" class="btn btn-default" value="Register" />
+                </div>
+            </div>
+        }
+        </div>
+        <div class="col-md-6">
+            <h3>Mark Problem on Map</h3>
+            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+            <div id="map-canvas"></div>
+        </div>
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
