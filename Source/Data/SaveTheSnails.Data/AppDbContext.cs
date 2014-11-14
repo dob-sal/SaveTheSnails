@@ -20,6 +20,12 @@ namespace SaveTheSnails.Data
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<AppDbContext, Configuration>());
         }
 
+        //public AppDbContext(string nameOrConnectionString)
+        //    : base(nameOrConnectionString)
+        //{
+           
+        //}
+
         public static AppDbContext Create()
         {
             return new AppDbContext();

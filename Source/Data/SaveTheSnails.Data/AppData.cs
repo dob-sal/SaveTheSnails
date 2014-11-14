@@ -1,6 +1,7 @@
 ﻿using SaveTheSnails.Data.Common.Models;
 using SaveTheSnails.Data.Common.Repository;
 using SaveTheSnails.Data.Models;
+using SaveTheSnails.Data.Repositories.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;

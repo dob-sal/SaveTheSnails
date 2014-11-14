@@ -13,6 +13,7 @@ namespace SaveTheSnails.Web.App_Start
     using System.Data.Entity;
     using SaveTheSnails.Data;
     using SaveTheSnails.Data.Common.Repository;
+    using SaveTheSnails.Data.Repositories.Base;
 
     public static class NinjectWebCommon 
     {

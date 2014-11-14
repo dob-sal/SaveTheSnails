@@ -58,8 +58,14 @@
     <Compile Include="IAppDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Base\DeletableEntityRepository.cs" />
+    <Compile Include="Repositories\Base\GenericRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\SaveTheSnails.Common\SaveTheSnails.Common.csproj">
+      <Project>{bf22dd39-e818-47f5-89c7-6048dac1381f}</Project>
+      <Name>SaveTheSnails.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SaveTheSnails.Data.Common\SaveTheSnails.Data.Common.csproj">
       <Project>{cba962de-b5b7-4e2d-b37c-3fad4b8eb19e}</Project>
       <Name>SaveTheSnails.Data.Common</Name>
@@ -73,6 +79,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
