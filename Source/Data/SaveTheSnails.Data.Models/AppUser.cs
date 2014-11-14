@@ -14,10 +14,15 @@ namespace SaveTheSnails.Data.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class AppUser : IdentityUser, IAuditInfo, IDeletableEntity
     {
+        private ICollection<Problem> reportedProblems;
+        private ICollection<Mission> joinedMissions;
+
         public AppUser()
         {
             // This will prevent UserManager.CreateAsync from causing exception
             this.CreatedOn = DateTime.Now;
+            this.reportedProblems = new HashSet<Problem>();
+            this.joinedMissions = new HashSet<Mission>();
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<AppUser> manager)
@@ -28,6 +33,21 @@ namespace SaveTheSnails.Data.Models
             return userIdentity;
         }
 
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public virtual ICollection<Mission> JoinedMissions
+        {
+            get { return joinedMissions; }
+            set { joinedMissions = value; }
+        }
+
+        public virtual ICollection<Problem> ReportedProblems
+        {
+            get { return reportedProblems; }
+            set { reportedProblems = value; }
+        }
 
         public DateTime CreatedOn { get; set; }
 

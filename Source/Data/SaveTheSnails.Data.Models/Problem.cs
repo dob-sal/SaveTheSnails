@@ -11,6 +11,13 @@
 
     public class Problem : AuditInfo, IDeletableEntity
     {
+        private ICollection<Picture> pictures;
+          
+        public Problem()
+        {
+            this.pictures = new HashSet<Picture>();
+        }
+
         [Key]
         public int Id { get; set; }
 
@@ -18,9 +25,21 @@
 
         public string Description { get; set; }
 
-        public string InformantID { get; set; }
+        public int? StatusID { get; set; }
 
-        public virtual AppUser Informant { get; set; }
+        public virtual ProblemStatus Status { get; set; }
+
+        public string ReporterID { get; set; }
+
+        public virtual AppUser Reporter { get; set; }
+
+        public virtual ProblemLocation Location { get; set; }
+
+        public virtual ICollection<Picture> Pictures
+        {
+            get { return pictures; }
+            set { pictures = value; }
+        }
 
         [Index]
         public bool IsDeleted { get; set; }

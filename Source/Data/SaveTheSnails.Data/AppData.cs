@@ -29,6 +29,31 @@ namespace SaveTheSnails.Data
             }
         }
 
+        public IDeletableEntityRepository<AppUser> Users
+        {
+            get { return this.GetDeletableEntityRepository<AppUser>(); }
+        }
+
+        public IRepository<Coordinator> Coordinators
+        {
+            get { return this.GetRepository<Coordinator>(); }
+        }
+
+        public IRepository<ProblemLocation> Locations
+        {
+            get { return this.GetRepository<ProblemLocation>(); }
+        }
+
+        public IRepository<Mission> Missions
+        {
+            get { return this.GetRepository<Mission>(); }
+        }
+
+        public IRepository<Picture> Pictures
+        {
+            get { return this.GetRepository<Picture>(); }
+        }
+
         public IDeletableEntityRepository<Problem> Problems
         {
             get
@@ -36,6 +61,16 @@ namespace SaveTheSnails.Data
                 return this.GetDeletableEntityRepository<Problem>();
 
             }
+        }
+
+        public IRepository<ProblemStatus> ProblemStatuses
+        {
+            get { return this.GetRepository<ProblemStatus>(); }
+        }
+
+        public IRepository<Region> Regions
+        {
+            get { return this.GetRepository<Region>(); }
         }
 
         /// <summary>

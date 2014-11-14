@@ -33,6 +33,20 @@ namespace SaveTheSnails.Data
 
         public virtual IDbSet<Problem> Problems { get; set; }
 
+        public virtual IDbSet<Coordinator> Coordinators { get; set; }
+        
+        public virtual IDbSet<ProblemLocation> Locations { get; set; }
+
+        public virtual IDbSet<Mission> Missions { get; set; }
+       
+        public virtual IDbSet<Picture> Pictures { get; set; }
+         
+        public virtual IDbSet<ProblemStatus> ProblemStatuses { get; set; }
+        
+        public virtual IDbSet<Region> Regions { get; set; }
+       
+
+
         public override int SaveChanges()
         {
             this.ApplyAuditInfoRules();

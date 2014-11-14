@@ -27,6 +27,8 @@ namespace SaveTheSnails.Web.Controllers
             var problems = this.Data.Problems.All()
                                .Project()
                                .To<IndexProblemViewModel>();
+
+            
             
             return View(problems);
         }

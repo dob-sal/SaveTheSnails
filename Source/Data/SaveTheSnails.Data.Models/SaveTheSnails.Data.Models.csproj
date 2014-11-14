@@ -53,8 +53,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppUser.cs" />
+    <Compile Include="Coordinator.cs" />
+    <Compile Include="ProblemLocation.cs" />
+    <Compile Include="Picture.cs" />
     <Compile Include="Problem.cs" />
+    <Compile Include="ProblemStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Region.cs" />
+    <Compile Include="Mission.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
