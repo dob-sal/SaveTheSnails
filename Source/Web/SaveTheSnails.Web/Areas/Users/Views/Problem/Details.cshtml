@@ -1,14 +1,25 @@
-﻿@model SaveTheSnails.Data.Models.Problem
+﻿@model SaveTheSnails.Web.Areas.Users.ViewModels.ProblemDetailsVewModel
 
 @{
     ViewBag.Title = "Details";
 }
+@section styles {
+    @Styles.Render("~/Content/googlemaps")
+}
 
 <h2>Details</h2>
 
-@foreach (var item in Model.Pictures)
-{
-    <img src="@Url.Action("GetPicture", "Problem", new { id = item.ID })" alt="@item.FileName" />
+<div class="row">
+    <div class="col-md-3">
+        @Html.Partial("_Slider", Model.Pictures)
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        @Html.Partial("_Map")
+    </div>
+</div>
 
+@section Scripts {
+    @Scripts.Render("~/bundles/googlemaps")
 }
-

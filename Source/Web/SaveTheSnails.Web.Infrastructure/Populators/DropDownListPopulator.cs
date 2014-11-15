@@ -35,5 +35,24 @@ namespace SaveTheSnails.Web.Infrastructure.Populators
 
             return categories;
         }
+
+        public IEnumerable<SelectListItem> GetRegions()
+        {
+            var regions = this.cache.Get<IEnumerable<SelectListItem>>("regions",
+                () =>
+                {
+                    return this.data.Regions
+                       .All()
+                       .Select(c => new SelectListItem
+                       {
+                           Value = c.Id.ToString(),
+                           Text = c.Name
+                       })
+                       .ToList();
+                });
+
+            return regions;
+        }
+       
     }
 }

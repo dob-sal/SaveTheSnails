@@ -47,6 +47,10 @@
 
         public virtual Category Category { get; set; }
 
+        public int? MissionID { get; set; }
+
+        public virtual Mission Mission { get; set; }
+
         [Index]
         public bool IsDeleted { get; set; }
 

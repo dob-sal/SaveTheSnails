@@ -25,11 +25,42 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Save The Snails", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Save The Snails", "Index", "Home", new { area = string.Empty }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, null)</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Problems<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Register", "Register", "Problem", new { area = "Users" }, null)</li>
+                            <li>@Html.ActionLink("View All", "All", "Problem", new { area = "Users" }, null)</li>
+                        </ul>
+                    </li>
+                        if (User.IsInRole(GlobalConstants.CoordinatorRole) || User.IsInRole(GlobalConstants.AdminRole))
+                        {
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Coordinators<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    @*<li>@Html.ActionLink("Register", "Register", "Problem", new { area = "Coordinators" }, null)</li>
+                                    <li>@Html.ActionLink("View All", "All", "Problem", new { area = "Coordinators" }, null)</li>*@
+                                </ul>
+                            </li>
+                        }
+
+                        if (User.IsInRole(GlobalConstants.AdminRole))
+                        {
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    @*<li>@Html.ActionLink("Register", "Register", "Problem", new { area = "Coordinators" }, null)</li>
+                                        <li>@Html.ActionLink("View All", "All", "Problem", new { area = "Coordinators" }, null)</li>*@
+                                </ul>
+                            </li>
+                        }
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

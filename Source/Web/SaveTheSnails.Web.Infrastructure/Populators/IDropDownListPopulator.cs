@@ -10,5 +10,7 @@ namespace SaveTheSnails.Web.Infrastructure.Populators
     public interface IDropDownListPopulator
     {
         IEnumerable<SelectListItem> GetCategories();
+
+        IEnumerable<SelectListItem> GetRegions();
     }
 }

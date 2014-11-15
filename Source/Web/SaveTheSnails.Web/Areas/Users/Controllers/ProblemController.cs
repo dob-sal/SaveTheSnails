@@ -10,29 +10,59 @@
     using Microsoft.AspNet.Identity;
 
     using AutoMapper;
+    using AutoMapper.QueryableExtensions;
 
     using SaveTheSnails.Data;
     using SaveTheSnails.Data.Models;
     using SaveTheSnails.Web.Areas.Users.ViewModels;
     using SaveTheSnails.Web.Controllers;
     using SaveTheSnails.Web.Infrastructure.Populators;
+    using Kendo.Mvc.UI;
+    using Kendo.Mvc.Extensions;
 
     [Authorize]
     public class ProblemController : BaseController
     {
         private IDropDownListPopulator populator;
 
-
         public ProblemController(IAppData data, IDropDownListPopulator populator)
-            :base(data)
+            : base(data)
         {
-            this.populator = populator;  
+            this.populator = populator;
         }
-        
+
         // GET: Users/Problem
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult All(FilterProblemsViewModel filter)
+        {
+            return View(filter);
+        }
+
+
+        [HttpPost]
+        public ActionResult ReadProblems([DataSourceRequest]DataSourceRequest request, int? category, int? region)
+        {
+            var problemsQuery = this.Data.Problems.All();
+
+            if (category != null)
+            {
+                problemsQuery = problemsQuery.Where(t => t.CategoryID == category);
+            }
+
+            if (region != null)
+            {
+                problemsQuery = problemsQuery.Where(t => t.Location.RegionID == region);
+            }
+
+            var problems = problemsQuery
+                            .Project()
+                            .To<AllProblemsListViewModel>();
+
+            return Json(problems.ToDataSourceResult(request));
         }
 
         [HttpGet]
@@ -56,25 +86,8 @@
                 var dbProblem = Mapper.Map<Problem>(model);
                 dbProblem.Reporter = this.CurrentUser;
 
-                foreach (var picture in model.UploadedPictures)
-                {
-                    if (picture != null)
-                    {
-                        using (var memory = new MemoryStream())
-                        {
-                            picture.InputStream.CopyTo(memory);
-
-                            var dbPicture = new Picture
-                            {
-                                File = memory.GetBuffer(),
-                                FileName = picture.FileName,
-                                ContentType = picture.ContentType
-                            };
-
-                            dbProblem.Pictures.Add(dbPicture);
-                        }
-                    }
-                }
+                var dbPictures = this.MapPictures(model.UploadedPictures);
+                dbProblem.Pictures.AddRange(dbPictures);
 
                 this.Data.Problems.Add(dbProblem);
                 this.Data.SaveChanges();
@@ -85,26 +98,67 @@
             return this.View(model);
         }
 
-
         public ActionResult Details(int id)
         {
 
-            var problemFromDB = this.Data.Problems.GetById(id);
-            return View(problemFromDB);
+            var problem = this.Data
+                .Problems
+                .All()
+                .Where(t => t.Id == id)
+                .Project()
+                .To<ProblemDetailsVewModel>()
+                .FirstOrDefault();
+
+            if (problem == null)
+            {
+                throw new HttpException(404, "Problem not found");
+            }
+
+            return View(problem);
         }
 
-        [ChildActionOnly]
+        public ActionResult GetCategories()
+        {
+            return Json(this.populator.GetCategories(), JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult GetRegions()
+        {
+            return Json(this.populator.GetRegions(), JsonRequestBehavior.AllowGet);
+        }
+
         public FileContentResult GetPicture(int id)
         {
             var picture = this.Data.Pictures.GetById(id);
             return picture.File != null ? new FileContentResult(picture.File, picture.ContentType) : null;
         }
 
-        [ChildActionOnly]
-        public ActionResult GetCategories()
+        private ICollection<Picture> MapPictures(ICollection<HttpPostedFileBase> uploadedPictures)
         {
-            return Json(this.populator.GetCategories(), JsonRequestBehavior.AllowGet);
-        }
+            ICollection<Picture> dbPictures = new List<Picture>(); ;
 
+            foreach (var picture in uploadedPictures)
+            {
+                if (picture != null)
+                {
+                    using (var memory = new MemoryStream())
+                    {
+                        picture.InputStream.CopyTo(memory);
+
+                        var dbPicture = new Picture
+                        {
+                            File = memory.GetBuffer(),
+                            FileName = picture.FileName,
+                            ContentType = picture.ContentType
+                        };
+
+                        dbPictures.Add(dbPicture);
+                    }
+                }
+            }
+
+            return dbPictures;
+        }
     }
 }
