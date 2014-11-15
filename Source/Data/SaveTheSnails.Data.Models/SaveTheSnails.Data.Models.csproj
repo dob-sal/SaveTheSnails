@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppUser.cs" />
+    <Compile Include="Category.cs" />
     <Compile Include="Coordinator.cs" />
     <Compile Include="ProblemLocation.cs" />
     <Compile Include="Picture.cs" />

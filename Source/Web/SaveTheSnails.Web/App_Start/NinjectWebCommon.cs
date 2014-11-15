@@ -14,6 +14,8 @@ namespace SaveTheSnails.Web.App_Start
     using SaveTheSnails.Data;
     using SaveTheSnails.Data.Common.Repository;
     using SaveTheSnails.Data.Repositories.Base;
+    using SaveTheSnails.Web.Infrastructure.Caching;
+    using SaveTheSnails.Web.Infrastructure.Populators;
 
     public static class NinjectWebCommon 
     {
@@ -74,6 +76,9 @@ namespace SaveTheSnails.Web.App_Start
 
             kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
 
+            kernel.Bind<ICacheService>().To<InMemoryCache>();
+
+            kernel.Bind<IDropDownListPopulator>().To<DropDownListPopulator>();
 
         }        
     }

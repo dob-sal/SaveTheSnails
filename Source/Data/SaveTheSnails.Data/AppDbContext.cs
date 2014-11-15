@@ -17,14 +17,14 @@ namespace SaveTheSnails.Data
         public AppDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<AppDbContext, Configuration>());
+            
         }
 
-        //public AppDbContext(string nameOrConnectionString)
-        //    : base(nameOrConnectionString)
-        //{
-           
-        //}
+        public AppDbContext(string nameOrConnectionString)
+            : base(nameOrConnectionString)
+        {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<AppDbContext, Configuration>());
+        }
 
         public static AppDbContext Create()
         {
@@ -32,6 +32,8 @@ namespace SaveTheSnails.Data
         }
 
         public virtual IDbSet<Problem> Problems { get; set; }
+
+        public virtual IDbSet<Category> Categories { get; set; }
 
         public virtual IDbSet<Coordinator> Coordinators { get; set; }
         

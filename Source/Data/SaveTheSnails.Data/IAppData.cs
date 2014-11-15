@@ -14,6 +14,8 @@ namespace SaveTheSnails.Data
 
         IDeletableEntityRepository<AppUser> Users { get; }
 
+        IRepository<Category> Categories { get; }
+
         IRepository<Coordinator> Coordinators { get; }
 
         IRepository<ProblemLocation> Locations { get; }
@@ -26,7 +28,7 @@ namespace SaveTheSnails.Data
 
         IRepository<Region> Regions { get; }
 
-        IRepository<Mission> Missions { get; }
+        IDeletableEntityRepository<Mission> Missions { get; }
 
         int SaveChanges();
     }

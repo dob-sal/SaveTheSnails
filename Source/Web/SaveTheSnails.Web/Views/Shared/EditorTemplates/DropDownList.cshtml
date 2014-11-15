@@ -1,0 +1,7 @@
+﻿@model int
+    <div class="col-md-2">
+        @Html.LabelFor(m => m)
+    </div>
+    <div class="col-md-10">
+        @Html.DropDownListFor(m => m, (IEnumerable<SelectListItem>)ViewBag.ListItem, new { @class = "form-control"})
+    </div>

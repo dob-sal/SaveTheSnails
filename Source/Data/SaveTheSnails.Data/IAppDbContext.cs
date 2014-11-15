@@ -13,6 +13,8 @@ namespace SaveTheSnails.Data
     {
         IDbSet<AppUser> Users { get; set; }
 
+        IDbSet<Category> Categories { get; set; }
+
         IDbSet<Coordinator> Coordinators { get; set; }
 
         IDbSet<ProblemLocation> Locations { get; set; }

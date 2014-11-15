@@ -43,6 +43,10 @@
             set { pictures = value; }
         }
 
+        public int CategoryID { get; set; }
+
+        public virtual Category Category { get; set; }
+
         [Index]
         public bool IsDeleted { get; set; }
 

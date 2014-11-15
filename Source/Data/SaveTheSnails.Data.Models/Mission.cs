@@ -1,13 +1,15 @@
-﻿using System;
+﻿using SaveTheSnails.Data.Common.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SaveTheSnails.Data.Models
 {
-    public class Mission
+    public class Mission : AuditInfo, IDeletableEntity
     {
         private ICollection<AppUser> joinedUsers;
 
@@ -42,6 +44,10 @@ namespace SaveTheSnails.Data.Models
             get { return joinedUsers; }
             set { joinedUsers = value; }
         }
-        
+
+        [Index]
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
     }
 }

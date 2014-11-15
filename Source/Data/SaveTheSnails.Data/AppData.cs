@@ -34,6 +34,12 @@ namespace SaveTheSnails.Data
             get { return this.GetDeletableEntityRepository<AppUser>(); }
         }
 
+        public IRepository<Category> Categories
+        {
+            get { return this.GetRepository<Category>(); }
+        }
+        
+        
         public IRepository<Coordinator> Coordinators
         {
             get { return this.GetRepository<Coordinator>(); }
@@ -44,9 +50,9 @@ namespace SaveTheSnails.Data
             get { return this.GetRepository<ProblemLocation>(); }
         }
 
-        public IRepository<Mission> Missions
+        public IDeletableEntityRepository<Mission> Missions
         {
-            get { return this.GetRepository<Mission>(); }
+            get { return this.GetDeletableEntityRepository<Mission>(); }
         }
 
         public IRepository<Picture> Pictures
