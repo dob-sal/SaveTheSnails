@@ -100,7 +100,6 @@
 
         public ActionResult Details(int id)
         {
-
             var problem = this.Data
                 .Problems
                 .All()

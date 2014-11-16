@@ -209,6 +209,8 @@
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
     <Compile Include="Areas\Coordinators\Controllers\MissionsController.cs" />
     <Compile Include="Areas\Coordinators\CoordinatorsAreaRegistration.cs" />
+    <Compile Include="Areas\Coordinators\ViewModels\MissionViewModel.cs" />
+    <Compile Include="Areas\Coordinators\ViewModels\ProblemViewModel.cs" />
     <Compile Include="Areas\Users\Controllers\ProblemController.cs" />
     <Compile Include="Areas\Users\UsersAreaRegistration.cs" />
     <Compile Include="Areas\Users\ViewModels\AllProblemsListViewModel.cs" />
@@ -490,6 +492,8 @@
     <Content Include="Areas\Users\Views\Shared\_Slider.cshtml" />
     <Content Include="Areas\Coordinators\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Coordinators\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Coordinators\Views\Missions\Schedule.cshtml" />
+    <Content Include="Areas\Coordinators\Views\Missions\AllMissions.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -555,12 +559,23 @@
     <Content Include="Scripts\kendo\kendo.aspnetmvc.min.js.map" />
     <Content Include="Views\Shared\_Map.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DropDownList.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MultiLinetext.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Currency.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Email.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\GridForeignKey.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Integer.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Number.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\ViewModels\" />
-    <Folder Include="Areas\Coordinators\ViewModels\" />
-    <Folder Include="Areas\Coordinators\Views\Missions\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

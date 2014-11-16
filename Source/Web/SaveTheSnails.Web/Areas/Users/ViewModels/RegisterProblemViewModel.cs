@@ -21,6 +21,7 @@ namespace SaveTheSnails.Web.Areas.Users.ViewModels
 
         [Required]
         [StringLength(100, MinimumLength = 3)]
+        [UIHint("MultiLineText")]
         public string Description { get; set; }
 
         [Required]
