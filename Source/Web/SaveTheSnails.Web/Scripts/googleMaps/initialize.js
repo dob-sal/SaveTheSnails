@@ -22,6 +22,12 @@ function initialize() {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
+    //debugger;
+
+    var currentMarker = setMarkers(map);
+    markers.push(currentMarker);
+
+
     //var defaultBounds = new google.maps.LatLngBounds(
     //    new google.maps.LatLng(42.750, 26.100),
     //    new google.maps.LatLng(42.750, 26.100));
@@ -47,6 +53,7 @@ function initialize() {
         for (var i = 0, marker; marker = markers[i]; i++) {
             marker.setMap(null);
         }
+
 
         // For each place, get the icon, place name, and location.
         markers = [];
@@ -87,6 +94,7 @@ function initialize() {
     // This event listener will call addMarker() when the map is clicked.
     google.maps.event.addListener(map, 'click', function (event) {
         addMarker(event.latLng);
+
     });
 
     // Add a marker to the map and push to the array.
@@ -103,7 +111,8 @@ function initialize() {
         $("#latitude-textbox").val(marker.position.B);
         $("#longitude-textbox").val(marker.position.k);
 
-        console.log(marker.position.B + " " + marker.position.k)
+       console.log(marker.position.B + " " + marker.position.k)
+        
     }
 }
 

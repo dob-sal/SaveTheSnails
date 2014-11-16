@@ -60,6 +60,9 @@ namespace SaveTheSnails.Web
 
             bundles.Add(new ScriptBundle("~/bundles/googlemaps").Include(
                       "~/Scripts/googleMaps/initialize.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/googlemapsSetMarkers").Include(
+                     "~/Scripts/googleMaps/set-markers.js"));
                      
         }
     }

@@ -207,6 +207,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Coordinators\Controllers\MissionsController.cs" />
     <Compile Include="Areas\Coordinators\CoordinatorsAreaRegistration.cs" />
     <Compile Include="Areas\Users\Controllers\ProblemController.cs" />
     <Compile Include="Areas\Users\UsersAreaRegistration.cs" />
@@ -487,11 +488,14 @@
     <Content Include="Areas\Users\Views\Problem\Details.cshtml" />
     <Content Include="Areas\Users\Views\Problem\All.cshtml" />
     <Content Include="Areas\Users\Views\Shared\_Slider.cshtml" />
+    <Content Include="Areas\Coordinators\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Coordinators\Views\Shared\_Layout.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\googleMaps\initialize.js" />
     <Content Include="Scripts\googleMaps\markers.js" />
+    <Content Include="Scripts\googleMaps\set-markers.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
@@ -555,9 +559,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\ViewModels\" />
-    <Folder Include="Areas\Coordinators\Controllers\" />
     <Folder Include="Areas\Coordinators\ViewModels\" />
-    <Folder Include="Areas\Coordinators\Views\Shared\" />
+    <Folder Include="Areas\Coordinators\Views\Missions\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

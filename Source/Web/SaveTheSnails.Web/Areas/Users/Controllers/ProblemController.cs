@@ -117,6 +117,31 @@
             return View(problem);
         }
 
+        [HttpPost]
+        public ActionResult JoinToMission(int missionID)
+        {
+            var mission = this.Data.Missions.GetById(missionID);
+            mission.JoinedUsers.Add(this.CurrentUser);
+            this.Data.SaveChanges();
+
+            var filter = new FilterProblemsViewModel();
+
+            return View("All", filter);
+        }
+
+        [HttpPost]
+        public ActionResult LeaveMission(int missionID)
+        {
+            var mission = this.Data.Missions.GetById(missionID);
+            mission.JoinedUsers.Remove(this.CurrentUser);
+            this.Data.SaveChanges();
+
+            var filter = new FilterProblemsViewModel();
+
+            return View("All", filter);
+        }
+
+
         public ActionResult GetCategories()
         {
             return Json(this.populator.GetCategories(), JsonRequestBehavior.AllowGet);

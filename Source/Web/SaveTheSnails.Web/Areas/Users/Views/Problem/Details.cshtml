@@ -1,25 +1,111 @@
 ﻿@model SaveTheSnails.Web.Areas.Users.ViewModels.ProblemDetailsVewModel
-
 @{
     ViewBag.Title = "Details";
 }
 @section styles {
     @Styles.Render("~/Content/googlemaps")
 }
-
-<h2>Details</h2>
-
+<h2>Problem Details</h2>
 <div class="row">
-    <div class="col-md-3">
-        @Html.Partial("_Slider", Model.Pictures)
+    <div class="col-md-6">
+        <div class="list-group">
+            <div class="list-group-item">
+                <h4 class="list-group-item-heading">@Html.LabelFor(m => m.Title)</h4>
+                <p class="list-group-item-text">@Html.DisplayFor(m => m.Title)</p>
+            </div>
+            <div class="list-group-item">
+                <h4 class="list-group-item-heading">@Html.LabelFor(m => m.Description)</h4>
+                <p class="list-group-item-text">@Html.DisplayFor(m => m.Description)</p>
+            </div>
+            <div class="list-group-item">
+                <h4 class="list-group-item-heading">@Html.LabelFor(m => m.Reporter.UserName, "Reporter")</h4>
+                <p class="list-group-item-text">@Html.DisplayFor(m => m.Reporter.UserName)</p>
+            </div>
+            <div class="list-group-item">
+                <h4 class="list-group-item-heading">@Html.LabelFor(m => m.Status.Name, "Status")</h4>
+                <p class="list-group-item-text">@Html.DisplayFor(m => m.Status.Name)</p>
+            </div>
+            <div class="list-group-item">
+                <h4 class="list-group-item-heading">@Html.LabelFor(m => m.Category.Name, "Category")</h4>
+                <p class="list-group-item-text">@Html.DisplayFor(m => m.Category.Name)</p>
+            </div>
+            <div class="list-group-item">
+                <h4 class="list-group-item-heading">@Html.LabelFor(m => m.Mission.Title, "Mission Title")</h4>
+                <p class="list-group-item-text">@Html.DisplayFor(m => m.Mission.Title)</p>
+            </div>
+            <div class="list-group-item">
+                <h4 class="list-group-item-heading">@Html.LabelFor(m => m.Mission.RequiredParticipants, "Required Participants")</h4>
+                <p class="list-group-item-text">@Html.DisplayFor(m => m.Mission.RequiredParticipants)</p>
+            </div>
+            <div class="list-group-item">
+                <h4 class="list-group-item-heading">@Html.LabelFor(m => m.JoinedUsersToMission)</h4>
+                <p class="list-group-item-text">@Html.DisplayFor(m => m.JoinedUsersToMission)</p>
+            </div>
+            <div class="list-group-item">
+                <h4 class="list-group-item-heading">@Html.LabelFor(m => m.Mission.Start)</h4>
+                <p class="list-group-item-text">@Html.DisplayFor(m => m.Mission.Start)</p>
+            </div>
+            <div class="list-group-item">
+                <h4 class="list-group-item-heading">@Html.LabelFor(m => m.Mission.End)</h4>
+                <p class="list-group-item-text">@Html.DisplayFor(m => m.Mission.End)</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+                 <div class="col-md-12">
+                    @Html.Partial("_Map")
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="text-center well">
+                    @Html.Partial("_Slider", Model.Pictures)
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 <div class="row">
-    <div class="col-md-3">
-        @Html.Partial("_Map")
+    <div class="col-md-offset-2">
+        @if (Model.Mission != null )
+        {
+            if (Model.Mission.JoinedUsers.Any(u => u.UserName == User.Identity.Name))
+            {
+                using (Html.BeginForm("LeaveMission", "Problem", FormMethod.Post))
+                {
+                    @Html.HiddenFor(m => m.MissionID)
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" class="btn btn-default" value="Leave Mission" />
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                using (Html.BeginForm("JoinToMission", "Problem", FormMethod.Post))
+                {
+                    @Html.HiddenFor(m => m.MissionID)
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" class="btn btn-default" value="Join To Mission" />
+                        </div>
+                    </div>
+                }
+            }
+        }
+        
     </div>
 </div>
+
+@Html.HiddenFor(m => m.Location.Latitude, new { @class = "form-control", id = "latitude-textbox", @readonly = "readonly" })
+@Html.HiddenFor(m => m.Location.Longitude, new { @class = "form-control", id = "longitude-textbox", @readonly = "readonly" })
 
 @section Scripts {
+    @Scripts.Render("~/bundles/googlemapsSetMarkers")
     @Scripts.Render("~/bundles/googlemaps")
+
 }
