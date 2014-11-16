@@ -16,14 +16,17 @@
     using Kendo.Mvc.UI;
     using Kendo.Mvc.Extensions;
     using SaveTheSnails.Data.Models;
+    using SaveTheSnails.Web.Services;
 
 
     public class MissionsController : BaseController
     {
+        private SchedulerMissionService missionService;
+        
         public MissionsController(IAppData data)
             : base(data)
         {
-   
+            this.missionService = new SchedulerMissionService(this.Data, this.CurrentUser);
         }
 
         public ActionResult Schedule()
@@ -33,48 +36,51 @@
 
         public JsonResult Read([DataSourceRequest] DataSourceRequest request)
         {
-            var missions = this.Data
-                                .Missions
-                                .All()
-                                .Project()
-                                .To<MissionViewModel>();
-
-            return Json(missions.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+            return Json(missionService.GetAll().ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult Create([DataSourceRequest] DataSourceRequest request, MissionViewModel mission)
         {
             if (ModelState.IsValid)
             {
-                var dbMission = Mapper.Map<Mission>(mission);
-                dbMission.CoordinatorID = this.Data.Coordinators.All().FirstOrDefault(c =>c.User == this.CurrentUser).Id;
-
-                this.Data.Missions.Add(dbMission);
-                this.Data.SaveChanges();
+                this.missionService.Insert(mission, ModelState);
             }
 
             return Json(new[] { mission }.ToDataSourceResult(request, ModelState));
         }
 
+        public virtual JsonResult Update([DataSourceRequest] DataSourceRequest request, MissionViewModel meeting)
+        {
+            if (ModelState.IsValid)
+            {
+                missionService.Update(meeting, ModelState);
+            }
 
+            return Json(new[] { meeting }.ToDataSourceResult(request, ModelState));
+        }
 
+        public virtual JsonResult Destroy([DataSourceRequest] DataSourceRequest request, MissionViewModel meeting)
+        {
+            if (ModelState.IsValid)
+            {
+                missionService.Delete(meeting, ModelState);
+            }
+
+            return Json(new[] { meeting }.ToDataSourceResult(request, ModelState));
+        }
+
+        //TODO : add in Where clause if region of problem is the same with region of current user
         public ActionResult GetProblemsList()
         {
-            var problems = this.Data.Problems.All().Project().To<ProblemViewModel>();
+            var coordinatorRegion = this.Data.Coordinators.All()
+                                                    .FirstOrDefault(c => c.User.UserName == this.CurrentUser.UserName).RegionID;
+
+            var problems = this.Data.Problems.All()
+                                        .Where(p => p.MissionID == null || p.Location.RegionID == coordinatorRegion) 
+                                        .Project().To<ProblemViewModel>();
 
             return Json(problems, JsonRequestBehavior.AllowGet);
         }
-
-        public ActionResult AllMissions()
-        {
-            var missions = this.Data
-                                .Missions
-                                .All().Where(m=>m.Id == 2 )
-                                .Project()
-                                .To<MissionViewModel>();
-
-            return View(missions);
-        }
-        
+              
     }
 }
