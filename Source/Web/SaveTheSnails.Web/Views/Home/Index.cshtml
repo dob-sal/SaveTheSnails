@@ -1,11 +1,10 @@
-﻿@model IEnumerable<SaveTheSnails.Web.ViewModels.Home.IndexProblemViewModel>
-@{
-    ViewBag.Title = "Home Page";
-}
-
-<div>Problems</div>
-@foreach (var problem in Model)
-{
-    <div>@problem.Title</div>
-}
-
+﻿<div class="container">
+    <div class="row well">
+        <div class="col-md-6">
+            <img src="~/img/save_the_snails_f.jpg" class="img-circle"/>
+        </div>
+        <div class="col-md-6" >
+            <img src="~/img/save_the_snails_m.jpg" class="img-circle"/>
+        </div>
+    </div>
+</div>

@@ -496,6 +496,9 @@
     <Content Include="Areas\Coordinators\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Coordinators\Views\Missions\Schedule.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="img\save_the_snails_f.jpg" />
+    <Content Include="img\save_the_snails_m.jpg" />
+    <Content Include="img\snail3.gif" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\googleMaps\initialize.js" />
@@ -583,6 +586,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\SaveTheSnails.Common\SaveTheSnails.Common.csproj">
+      <Project>{bf22dd39-e818-47f5-89c7-6048dac1381f}</Project>
+      <Name>SaveTheSnails.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\SaveTheSnails.Data.Common\SaveTheSnails.Data.Common.csproj">
       <Project>{cba962de-b5b7-4e2d-b37c-3fad4b8eb19e}</Project>
       <Name>SaveTheSnails.Data.Common</Name>

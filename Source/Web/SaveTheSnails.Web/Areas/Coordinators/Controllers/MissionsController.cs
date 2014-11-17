@@ -17,12 +17,13 @@
     using Kendo.Mvc.Extensions;
     using SaveTheSnails.Data.Models;
     using SaveTheSnails.Web.Services;
+    using SaveTheSnails.Common;
 
 
     public class MissionsController : BaseController
     {
         private SchedulerMissionService missionService;
-        
+
         public MissionsController(IAppData data)
             : base(data)
         {
@@ -72,15 +73,21 @@
         //TODO : add in Where clause if region of problem is the same with region of current user
         public ActionResult GetProblemsList()
         {
+            if (User.IsInRole(GlobalConstants.AdminRole))
+            {
+                
+            }
+
+
             var coordinatorRegion = this.Data.Coordinators.All()
                                                     .FirstOrDefault(c => c.User.UserName == this.CurrentUser.UserName).RegionID;
 
             var problems = this.Data.Problems.All()
-                                        .Where(p => p.MissionID == null || p.Location.RegionID == coordinatorRegion) 
+                                        .Where(p => p.MissionID == null || p.Location.RegionID == coordinatorRegion)
                                         .Project().To<ProblemViewModel>();
 
             return Json(problems, JsonRequestBehavior.AllowGet);
         }
-              
+
     }
 }
