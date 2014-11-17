@@ -11,5 +11,7 @@ namespace SaveTheSnails.Common
         public const string AdminRole = "Admin";
         public const string CoordinatorRole = "Coordinator";
         public const string SuccsessAddedProblem = "Your problem was successfully added!";
+        public const string SuccsessJoinMission = "You successfully join to mission ";
+        public const string SuccsessLeaveMission = "You successfully leave mission ";
     }
 }

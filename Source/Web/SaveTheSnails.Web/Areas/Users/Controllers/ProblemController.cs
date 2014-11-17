@@ -20,6 +20,7 @@
     using Kendo.Mvc.UI;
     using Kendo.Mvc.Extensions;
     using SaveTheSnails.Common;
+    using System.Net;
 
     [Authorize]
     public class ProblemController : BaseController
@@ -127,6 +128,8 @@
 
             var filter = new FilterProblemsViewModel();
 
+            Success(string.Format(GlobalConstants.SuccsessJoinMission + " " + mission.Title), true);
+
             return View("All", filter);
         }
 
@@ -139,9 +142,25 @@
 
             var filter = new FilterProblemsViewModel();
 
+            Success(string.Format(GlobalConstants.SuccsessLeaveMission+ " " + mission.Title), true);
+
             return View("All", filter);
         }
 
+        public ActionResult JoinedUsersToMission(int id)
+        {
+            if (!Request.IsAjaxRequest())
+            {
+                Response.StatusCode = (int)HttpStatusCode.Forbidden;
+                return this.Content("This action can be invoke only by AJAX call");
+            }
+
+            var joinedUsers = this.Data.Missions
+                                        .GetById(id)
+                                        .JoinedUsers.Select(u=>u.UserName);
+
+            return this.Content(String.Join(",", joinedUsers));
+        }
 
         public ActionResult GetCategories()
         {

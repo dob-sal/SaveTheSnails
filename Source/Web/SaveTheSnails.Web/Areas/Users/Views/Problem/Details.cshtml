@@ -34,14 +34,6 @@
                 <p class="list-group-item-text">@Html.DisplayFor(m => m.Mission.Title)</p>
             </div>
             <div class="list-group-item">
-                <h4 class="list-group-item-heading">@Html.LabelFor(m => m.Mission.RequiredParticipants, "Required Participants")</h4>
-                <p class="list-group-item-text">@Html.DisplayFor(m => m.Mission.RequiredParticipants)</p>
-            </div>
-            <div class="list-group-item">
-                <h4 class="list-group-item-heading">@Html.LabelFor(m => m.JoinedUsersToMission)</h4>
-                <p class="list-group-item-text">@Html.DisplayFor(m => m.JoinedUsersToMission)</p>
-            </div>
-            <div class="list-group-item">
                 <h4 class="list-group-item-heading">@Html.LabelFor(m => m.Mission.Start)</h4>
                 <p class="list-group-item-text">@Html.DisplayFor(m => m.Mission.Start)</p>
             </div>
@@ -49,6 +41,26 @@
                 <h4 class="list-group-item-heading">@Html.LabelFor(m => m.Mission.End)</h4>
                 <p class="list-group-item-text">@Html.DisplayFor(m => m.Mission.End)</p>
             </div>
+            <div class="list-group-item">
+                <h4 class="list-group-item-heading">@Html.LabelFor(m => m.Mission.RequiredParticipants, "Required Participants")</h4>
+                <p class="list-group-item-text">@Html.DisplayFor(m => m.Mission.RequiredParticipants)</p>
+            </div>
+            <div class="list-group-item">
+                <h4 class="list-group-item-heading">@Html.LabelFor(m => m.JoinedUsersToMission)</h4>
+                <p class="list-group-item-text">@Html.DisplayFor(m => m.JoinedUsersToMission)</p>
+                @if (Model.JoinedUsersToMission > 0)
+                {
+                    @Ajax.ActionLink("See who is joined to the mission", "JoinedUsersToMission", "Problem", new { id = Model.MissionID },
+                         new AjaxOptions
+                        {
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "joined-users",
+                            HttpMethod = "GET"
+                        })
+                        <div id="joined-users"></div>
+                }
+            </div>
+           
         </div>
 
     </div>
@@ -105,6 +117,7 @@
 @Html.HiddenFor(m => m.Location.Longitude, new { @class = "form-control", id = "longitude-textbox", @readonly = "readonly" })
 
 @section Scripts {
+    @Scripts.Render("~/bundles/jquery-ajax")
     @Scripts.Render("~/bundles/googlemapsSetMarkers")
     @Scripts.Render("~/bundles/googlemaps")
 

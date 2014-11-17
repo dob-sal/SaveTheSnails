@@ -58,7 +58,8 @@
     </div>
 </div>
 
-@(Html.Kendo()
+<div id="results">
+    @(Html.Kendo()
             .ListView<AllProblemsListViewModel>()
             .TagName("div")
             .Name("all-problems")
@@ -68,11 +69,12 @@
             {
                 dataSource
                     .ServerOperation(true)
+                    .AutoSync(true)
                     .PageSize(5)
                     .Read(read => read.Action("ReadProblems", "Problem", new { category = Model.category, region = Model.region }));
             }))
 
-
+</div>
 <script id="all-problems-template" type="text/x-kendo-tmpl">
     <br />
     <div class="row">
