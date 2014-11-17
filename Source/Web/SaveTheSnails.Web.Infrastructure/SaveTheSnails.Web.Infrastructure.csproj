@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="Caching\ICacheService.cs" />
     <Compile Include="Caching\InMemoryCache.cs" />
+    <Compile Include="Helpers\Alert.cs" />
     <Compile Include="Mapping\AutoMapperConfig.cs" />
     <Compile Include="Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Mapping\IMapFrom.cs" />

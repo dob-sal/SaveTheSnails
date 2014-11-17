@@ -19,6 +19,7 @@
     using SaveTheSnails.Web.Infrastructure.Populators;
     using Kendo.Mvc.UI;
     using Kendo.Mvc.Extensions;
+    using SaveTheSnails.Common;
 
     [Authorize]
     public class ProblemController : BaseController
@@ -92,6 +93,7 @@
                 this.Data.Problems.Add(dbProblem);
                 this.Data.SaveChanges();
 
+                Success(string.Format(GlobalConstants.SuccsessAddedProblem), true);
                 return this.RedirectToAction("Register");
             }
 
