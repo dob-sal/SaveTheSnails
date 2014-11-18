@@ -206,7 +206,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
-    <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administration\Controllers\Base\AdminController.cs" />
+    <Compile Include="Areas\Administration\Controllers\Base\KendoGridAdministrationController.cs" />
+    <Compile Include="Areas\Administration\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Base\AdministrationViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Users\UsersViewModel.cs" />
     <Compile Include="Areas\Coordinators\Controllers\MissionsController.cs" />
     <Compile Include="Areas\Coordinators\CoordinatorsAreaRegistration.cs" />
     <Compile Include="Areas\Coordinators\ViewModels\MissionViewModel.cs" />
@@ -469,7 +473,6 @@
     <Content Include="Areas\Administration\Views\web.config" />
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Administration\Views\Home\Navigation.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Currency.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Date.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\DateTime.cshtml" />
@@ -495,6 +498,7 @@
     <Content Include="Areas\Coordinators\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Coordinators\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Coordinators\Views\Missions\Schedule.cshtml" />
+    <Content Include="Areas\Administration\Views\Users\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="img\save_the_snails_f.jpg" />
     <Content Include="img\save_the_snails_m.jpg" />
@@ -582,7 +586,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

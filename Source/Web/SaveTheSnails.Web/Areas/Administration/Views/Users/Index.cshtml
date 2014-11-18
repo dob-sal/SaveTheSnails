@@ -1,0 +1,36 @@
+﻿@using SaveTheSnails.Web.Areas.Administration.ViewModels.Users
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2>@ViewBag.Title </h2>
+@(Html.Kendo()
+    .Grid<UsersViewModel>()
+    .Name("grid")
+    .Columns(cols =>
+    {
+        cols.Bound(pr => pr.Id).Hidden();
+        cols.Bound(pr => pr.UserName);
+        cols.Bound(pr => pr.Email);
+        cols.Bound(pr => pr.IsCoordinator);
+        cols.Bound(pr => pr.CreatedOn).Hidden();
+        cols.Bound(pr => pr.ModifiedOn).Hidden();
+        cols.Command(com => com.Edit());
+        cols.Command(com => com.Destroy());
+    })
+    .ColumnMenu()
+    .Pageable(page => page.Refresh(true))
+    .Sortable()
+    .Groupable()
+    .Filterable()
+    .Editable(edit => edit.Mode(GridEditMode.PopUp))
+    .ToolBar(toolbar => toolbar.Create())
+    .DataSource(data =>
+        data
+            .Ajax()
+            .Model(m => m.Id(user => user.Id))
+            .Read(read => read.Action("Read", "Users"))
+            .Create(create => create.Action("Create", "Users"))
+            .Update(update => update.Action("Update", "Users"))
+            .Destroy(destroy => destroy.Action("Destroy", "Users"))
+))
