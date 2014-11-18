@@ -52,8 +52,8 @@
             if (modelState.IsValid)
             {
                 var dbMission = Mapper.Map<Mission>(mission);
-                dbMission.CoordinatorID = this.Data.Coordinators.All()
-                                                    .FirstOrDefault(c => c.User.UserName == this.CurrentUser.UserName).Id;
+                //dbMission.CoordinatorID = this.Data.Coordinators.All()
+                //                                    .FirstOrDefault(c => c.User.UserName == this.CurrentUser.UserName).Id;
 
                 this.Data.Missions.Add(dbMission);
 

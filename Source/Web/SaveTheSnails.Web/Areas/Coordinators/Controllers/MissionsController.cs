@@ -44,6 +44,8 @@
         {
             if (ModelState.IsValid)
             {
+                mission.CoordinatorID = this.Data.Coordinators.All()
+                                        .FirstOrDefault(c => c.User.UserName == this.CurrentUser.UserName).Id;
                 this.missionService.Insert(mission, ModelState);
             }
 
