@@ -4,6 +4,18 @@
 
 <h2>Schedule</h2>
 
+@(Html.Kendo().Window()
+    .Name("alertWindow")
+    .Title("Предупреждение")
+    .Draggable()
+    .Resizable()
+    .Width(400)
+    .Height(200)
+    .Modal(true)
+    .Animation(true)
+    .Visible(false)
+)
+
 @*<div id="team-schedule">
     <div id="people">
         <input checked type="checkbox" id="alex" value="1">
@@ -60,6 +72,7 @@
             m.RecurrenceId(f => f.RecurrenceID);
 
         })
+        .Events(e => e.Error("error_handler"))
         .Read(read => read.Action("Read", "Missions"))
         .Create(create => create.Action("Create", "Missions"))
         .Destroy("Destroy", "Missions")
@@ -94,6 +107,29 @@
             scheduler.dataSource.filter(filter);
         });
     })
+</script>
+
+<script type="text/javascript">
+    function showAlertWindow(message) {
+        var alertWindow = $('#alertWindow').data('kendoWindow');
+        alertWindow.content(message);
+        alertWindow.refresh();
+        alertWindow.center();
+        alertWindow.open();
+    }
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Грешки:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            showAlertWindow(message);
+        }
+    }
 </script>
 
 

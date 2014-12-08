@@ -52,12 +52,26 @@
             return Json(new[] { mission }.ToDataSourceResult(request, ModelState));
         }
 
-        public virtual JsonResult Update([DataSourceRequest] DataSourceRequest request, MissionViewModel meeting)
+        public virtual ActionResult Update([DataSourceRequest] DataSourceRequest request, MissionViewModel meeting)
         {
-            if (ModelState.IsValid)
+
+            if (true)
             {
-                missionService.Update(meeting, ModelState);
+                Success("Test", true);
+
+                 ModelState.AddModelError("update-error", "Нямате право");
+                 ModelState.AddModelError("update-error2", "Нямате желание");
             }
+            else 
+            {
+
+                if (ModelState.IsValid)
+                {
+                    missionService.Update(meeting, ModelState);
+                }
+            }
+            
+            
 
             return Json(new[] { meeting }.ToDataSourceResult(request, ModelState));
         }

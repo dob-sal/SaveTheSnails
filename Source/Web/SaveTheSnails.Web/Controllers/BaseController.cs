@@ -3,6 +3,7 @@ using SaveTheSnails.Data.Models;
 using SaveTheSnails.Web.Infrastructure.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -24,6 +25,8 @@ namespace SaveTheSnails.Web.Controllers
         protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
         {
             this.CurrentUser = this.Data.Users.All().Where(u => u.UserName == requestContext.HttpContext.User.Identity.Name).FirstOrDefault();
+
+            System.Threading.Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
 
             return base.BeginExecute(requestContext, callback, state);
         }
